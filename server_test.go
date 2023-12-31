@@ -36,7 +36,7 @@ func TestGETPlayers(t *testing.T) {
 		request := newGetScoreRequest("Pepper")
 		response := httptest.NewRecorder()
 
-		server.ServeHTTP(response, request)
+		server.router.ServeHTTP(response, request)
 
 		got := response.Body.String()
 		want := "20"
@@ -50,7 +50,7 @@ func TestGETPlayers(t *testing.T) {
 		request := newGetScoreRequest("Floyd")
 		response := httptest.NewRecorder()
 
-		server.ServeHTTP(response, request)
+		server.router.ServeHTTP(response, request)
 
 		got := response.Body.String()
 		want := "10"
@@ -64,7 +64,7 @@ func TestGETPlayers(t *testing.T) {
 		request := newGetScoreRequest("Apollo")
 		response := httptest.NewRecorder()
 
-		server.ServeHTTP(response, request)
+		server.router.ServeHTTP(response, request)
 
 		got := response.Code
 		want := http.StatusNotFound
@@ -89,7 +89,7 @@ func TestStoreWins(t *testing.T) {
 		request := newPostWinRequest(player)
 		response := httptest.NewRecorder()
 
-		server.ServeHTTP(response, request)
+		server.router.ServeHTTP(response, request)
 
 		assertStatus(t, response.Code, http.StatusAccepted)
 
@@ -137,7 +137,7 @@ func TestLeague(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/league", nil)
 		response := httptest.NewRecorder()
 
-		server.ServeHTTP(response, request)
+		server.router.ServeHTTP(response, request)
 
 		assertStatus(t, response.Code, http.StatusOK)
 	})

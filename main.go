@@ -10,5 +10,5 @@ func main() {
 		store:  NewInMemoryPlayerStore(),
 		router: http.NewServeMux(),
 	}
-	log.Fatal(http.ListenAndServe(":5000", server))
+	log.Fatal(http.ListenAndServe(":5000", server.router))
 }

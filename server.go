@@ -28,10 +28,6 @@ func NewPlayerServer(store PlayerStore) *PlayerServer {
 	return p
 }
 
-func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	p.router.ServeHTTP(w, r)
-}
-
 func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
 	score := p.store.GetPlayerScore(player)
 

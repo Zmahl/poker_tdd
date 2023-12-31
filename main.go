@@ -6,9 +6,6 @@ import (
 )
 
 func main() {
-	server := &PlayerServer{
-		store:  NewInMemoryPlayerStore(),
-		router: http.NewServeMux(),
-	}
+	server := NewPlayerServer(NewInMemoryPlayerStore())
 	log.Fatal(http.ListenAndServe(":5000", server.router))
 }
